@@ -35,16 +35,34 @@ public class BuildBlock : MonoBehaviour
             Shape curShape = ShapeMenu.instance.curShape;
 
             Block block = hitInfo.collider.GetComponent<Block>();
+            
+            
 
             int modifier = 1;
+            float scale = hitInfo.transform.localScale.x;
+            Vector3 buildablePosition;
+
             if (block.shape == Shape.Cylinder && hitInfo.normal==Vector3.up)
             {
-                //the height of the cylinder is 2 unit, to avoid overlaps of new instantiated objects, a modifier is used.
+                //the height of the cylinder is 2 unit, to avoid overlaps between old objects and new instantiated objects, a modifier is used.
                 modifier = 2;
+                buildablePosition = hitInfo.normal * modifier * scale  + hitInfo.transform.position;
             }
+            else
+            {
+                scale = hitInfo.normal == Vector3.up ? scale : scale / 2;
+                if (hitInfo.normal == Vector3.up)
+                {
+                    buildablePosition = hitInfo.normal * (modifier * scale) + hitInfo.transform.position;
+                }
+                else
+                {
+                    buildablePosition = hitInfo.normal * (modifier * scale + 0.5f) + hitInfo.transform.position;
+                }
+                
+            }
+
             
-            
-            Vector3 buildablePosition = hitInfo.normal* modifier + hitInfo.transform.position;
             Quaternion buildableRotation = hitInfo.transform.rotation;
             Build(buildablePosition, buildableRotation);
         }
