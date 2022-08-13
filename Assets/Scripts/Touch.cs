@@ -122,28 +122,28 @@ public class Touch : MonoBehaviour
 
                 Vector3 dir;
 
-                if ((Mathf.Abs(angle)<30) || (Mathf.Abs(angle)>150))
+                if ((Mathf.Abs(angle)<22.5) || (Mathf.Abs(angle)>157.5))
                 {
                     //move along the y direction
                     dir = new Vector3(0, disDirection.magnitude, 0);
-                    dir = (angle > -30 && angle < 30) ? dir : -dir;
+                    dir = (angle > -22.5 && angle < 22.5) ? dir : -dir;
 
                     
 
                 }
-                else if ((angle < -60 && angle > -120) || (angle > 60 && angle < 120))
+                else if ((angle < -67.5 && angle > -112.5) || (angle > 67.5 && angle < 112.5))
                 {
                     //move along the x direction
                     dir = new Vector3(disDirection.magnitude, 0, 0);
-                    dir = (angle < -60 && angle > -120) ? dir : -dir;
+                    dir = (angle < -67.5 && angle > -112.5) ? dir : -dir;
 
                     
                 }
-                else if((angle<-30 && angle>-60) || (angle>120 && angle<150))
+                else if((angle<-22.5 && angle>-67.5) || (angle>112.5 && angle<157.5))
                 {
                     //move along the z direction;
                     dir = new Vector3(0, 0, disDirection.magnitude);
-                    dir = (angle < -30 && angle > -60) ? dir : -dir;
+                    dir = (angle < -22.5 && angle > -67.5) ? dir : -dir;
                     
                 }
                 else
